@@ -1,5 +1,5 @@
 resource "aws_security_group" "demo_public_sg" {
-  name        = "public-sg"
+  name        = "demo_public-sg"
   description = "Allow SSH and HTTP"
   vpc_id      = vpc-07d30b640033b9c46
 
@@ -27,12 +27,12 @@ resource "aws_security_group" "demo_public_sg" {
   }
 
   tags = {
-    Name = "public-sg"
+    Name = "demo_public-sg"
   }
 }
 
 resource "aws_security_group" "demo_private_sg" {
-  name        = "private-sg"
+  name        = "demo_private-sg"
   description = "Allow internal traffic from public SG"
   vpc_id      = vpc-07d30b640033b9c46
 
