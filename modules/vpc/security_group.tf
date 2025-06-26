@@ -1,7 +1,7 @@
 resource "aws_security_group" "demo_public_sg" {
-  name        = "demo_public-sg"
+  name        = "public-sg"
   description = "Allow SSH and HTTP"
-  vpc_id      = vpc-07d30b640033b9c46
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "SSH"
@@ -27,20 +27,20 @@ resource "aws_security_group" "demo_public_sg" {
   }
 
   tags = {
-    Name = "demo_public-sg"
+    Name = "public-sg"
   }
 }
 
 resource "aws_security_group" "demo_private_sg" {
-  name        = "demo_private-sg"
+  name        = "private-sg"
   description = "Allow internal traffic from public SG"
-  vpc_id      = vpc-07d30b640033b9c46
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port       = 0
     to_port         = 65535
     protocol        = "tcp"
-    security_groups = [aws_security_group.public_sg.id]
+    security_groups = [aws_security_group.demo_public_sg.id]
   }
 
   egress {

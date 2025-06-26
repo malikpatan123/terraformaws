@@ -28,10 +28,11 @@ output "private_route_table_id" {
 } 
 
 output "demo_public_sg_id" {
-  value = aws_security_group.public_sg.id
+  value = aws_security_group.demo_public_sg.id
 }
 
 output "demo_private_sg_id" {
-  value = aws_security_group.private_sg.id
+  value = aws_security_group.demo_private_sg.id
 }
+
 
