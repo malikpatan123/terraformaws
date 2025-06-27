@@ -32,3 +32,21 @@ module "private_ec2" {
   name                = "private-server"
 }
 
+module "iam_role" {
+  source    = "../../modules/iam_role"
+  role_name = "ec2-s3-access-role"
+}
+
+resource "aws_instance" "public_ec2" {
+  ami                    = "ami-0abcd1234abcd1234"
+  instance_type          = "t2.micro"
+  subnet_id              = var.public_subnet_id
+  key_name               = var.key_name
+  iam_instance_profile   = module.iam_role.instance_profile_name
+  associate_public_ip_address = true
+
+  tags = {
+    Name = "public-instance"
+  }
+}
+
