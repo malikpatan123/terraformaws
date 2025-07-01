@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Update all packages
+yum update -y
+
+# Install NGINX from Amazon Linux Extras (corrected command)
+amazon-linux-extras install nginx1.12 -y
+
+# Start NGINX service (corrected command name)
+service nginx start
+
+# Enable NGINX to start on boot
+systemctl enable nginx
+
+# Write the hostname to the NGINX default web page
+echo "<h1>$(hostname)</h1>" > /usr/share/nginx/html/index.html
+

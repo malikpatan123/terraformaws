@@ -1,0 +1,24 @@
+#!/bin/bash
+i=1
+sgids="sg-0803a813c2dbde3ba"
+
+for subnet in "subnet-02b11ed43acb873c5" "subnet-06aa9f891c2080d02"
+do
+  echo "Creating EC2 instance in $subnet..."
+
+  output=$(aws ec2 run-instances \
+    --instance-type t2.micro \
+    --launch-template LaunchTemplateId="lt-0edf86fbb48006a41" \
+    --security-group-ids $sgids \
+    --subnet-id $subnet \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=DeleteLaterServer-$i}]" \
+    2>&1)
+  if [[ $? -eq 0 ]]; then
+    echo "Created EC2 machine with the name DeleteLaterServer-$i"
+  else
+    echo "Failed to create EC2 instance in $subnet"
+    echo "Error: $output"
+  fi
+
+  i=$((i + 1))
+done
