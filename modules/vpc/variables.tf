@@ -25,6 +25,11 @@ variable "azs" {
   type        = list(string)
 }
 
-variable "vpc_id" {}
+variable "region" {
+  description = "The AWS region to deploy to"
+  type        = string
+  default     = "ap-south-1" # or set your preferred region
+}
+
 
 

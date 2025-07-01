@@ -15,10 +15,11 @@ output "igw_id" {
   value = aws_internet_gateway.igw.id
 }
 
+/*
 output "nat_gateway_id" {
   value = aws_nat_gateway.nat.id
 }
-
+*/
 output "public_route_table_id" {
   value = aws_route_table.public.id
 }
@@ -34,5 +35,8 @@ output "demo_public_sg_id" {
 output "demo_private_sg_id" {
   value = aws_security_group.demo_private_sg.id
 }
-
-
+/*
+output "s3_vpc_endpoint_id" {
+  value = aws_vpc_endpoint.s3.id
+}
+*/

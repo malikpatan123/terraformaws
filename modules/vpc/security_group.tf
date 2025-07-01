@@ -1,7 +1,7 @@
 resource "aws_security_group" "demo_public_sg" {
   name        = "public-sg"
   description = "Allow SSH and HTTP"
-  vpc_id      = var.vpc_id
+  vpc_id = aws_vpc.main.id  # reference the VPC you're creating in this module
 
   ingress {
     description = "SSH"
@@ -34,7 +34,7 @@ resource "aws_security_group" "demo_public_sg" {
 resource "aws_security_group" "demo_private_sg" {
   name        = "private-sg"
   description = "Allow internal traffic from public SG"
-  vpc_id      = var.vpc_id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     from_port       = 0
